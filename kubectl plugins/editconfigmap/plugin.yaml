@@ -1,0 +1,20 @@
+name: "editconfigmap"
+shortDesc: "edit an existing configmap by adding or deleting a field, supports add a field from files"
+longDesc: "Edit configmap by adding or deleting fields under 'data' field.
+           Support multiple operation in one time. For adding field from file content,
+           support multiple files in one time. (separate with comma) "
+example: "kubectl editconfigmap -n(--namespace) {namespace} {configmapName}
+                                --add {field=value}
+                                --from-file {filename}
+                                --delete {field}"
+command: "./test.sh $PWD"
+flags:
+  - name: "from-file"
+    desc: "use as --from-file={file_name} or --from-file={field_name}={file_name}. For multiple files, separate with comma"
+    defValue: null
+  - name: "add"
+    desc: "--add={field=value} add a field under 'data' with given 'value'. Split only the first `=`, sequential `=`s are regarding as part of value. Don't support multiple pairs."
+    defValue: null
+  - name: "delete"
+    desc: "--delete={fieldname} delete given field under 'data'. For deleting multiple pairs, separate each field by comma"
+    defValue: null
